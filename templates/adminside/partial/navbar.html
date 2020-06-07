@@ -39,11 +39,13 @@
             {#            </li>#}
             <li>
                 {% if request.user|has_group:"Admin" %}
-                    <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"
+                    <img class="img-xs rounded-circle" src="{{ request.user.adminuser.image.url }}"
                          alt="Profile image">
-                {% endif %}
-                {% if request.user|has_group:"Teacher" %}
+                {% elif request.user|has_group:"Teacher" %}
                     <img class="img-xs rounded-circle" src="{{ request.user.teacher.image.url }}"
+                         alt="Profile image">
+                {% else %}
+                    <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"
                          alt="Profile image">
                 {% endif %}
             </li>

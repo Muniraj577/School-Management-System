@@ -1,0 +1,44 @@
+{% extends 'adminside/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Update Teacher{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Update Teacher</h4>
+                    <form class="forms-sample" action="{% url 'Admin:update_admin_user' admin_user.id %}" method="POST"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="first_name">First Name: </label>
+                            {% render_field form1.first_name class="form-control" placeholder="Fisrt Name" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name: </label>
+                            {% render_field form1.last_name class="form-control" placeholder="Last Name" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username: </label>
+                            {% render_field form1.username class="form-control" placeholder="Username" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email: </label>
+                            {% render_field form1.email class="form-control" placeholder="Email" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone: </label>
+                            {% render_field form2.phone class="form-control" placeholder="Enter Phone Number" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address: </label>
+                            {% render_field form2.address class="form-control" placeholder="Enter Address" %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

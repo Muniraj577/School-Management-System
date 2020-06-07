@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'schooldashboard.apps.SchooldashboardConfig',
     'Teacher.apps.TeacherConfig',
+    'Admin.apps.AdminConfig',
     'widget_tweaks',
 ]
 
