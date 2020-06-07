@@ -1,0 +1,75 @@
+{% extends 'adminside/base.html' %}
+{% load static %}
+{% load auth_extras %}
+{% load widget_tweaks %}
+{% block title %}Teacher Page{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <h1>
+                    <a href="{% url 'Teacher:add_teacher' %}" class="btn btn-primary float-right mt-2 mr-2">Add
+                        Teacher</a>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Teacher Lists</h4>
+                    <table class="table" id="teacher">
+                        <thead>
+                        <tr>
+                            <th>S.N</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Salary</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+{#                        group = request.user.groups.all()[0].name#}
+                        {% for teacher in teachers %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><img src="{{ teacher.image.url }}" alt=""></td>
+                                <td>{{ teacher.user.first_name }} {{ teacher.user.last_name }}</td>
+                                <td>{{ teacher.user.email }}</td>
+                                <td>{{ teacher.phone }}</td>
+                                <td>{{ teacher.address }}</td>
+                                <td>{{ teacher.salary }}</td>
+                                <td>
+                                    {% if request.user|has_group:"Admin" %}
+                                        <a class="" href="{% url 'Teacher:update_teacher' teacher.id %}"><i
+                                                class="fa fa-edit"></i></a>
+                                        <a class="" href="{% url 'Teacher:delete_teacher' teacher.id %}"><i
+                                                class="fa fa-trash-o" style="color: red;"></i></a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block script %}
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#teacher').DataTable();
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

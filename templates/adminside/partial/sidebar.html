@@ -1,0 +1,40 @@
+{% load static %}
+{% load auth_extras %}
+<!-- partial:partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+                <div class="profile-image">
+                    {% if request.user|has_group:"Admin" %}
+                        <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"
+                             alt="profile image">
+                        <div class="dot-indicator bg-success"></div>
+                    {% endif %}
+                    {% if request.user|has_group:"Teacher" %}
+                        <img class="img-xs rounded-circle" src="{{ request.user.teacher.image.url }}"
+                             alt="profile image">
+                        <div class="dot-indicator bg-success"></div>
+                    {% endif %}
+                </div>
+                <div class="text-wrapper">
+                    <p class="profile-name">{{ request.user }}</p>
+                    {#                  <p class="designation">Premium user</p>#}
+                </div>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'schooldashboard:admin-dashboard' %}">
+                <i class="menu-icon typcn typcn-document-text"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'Teacher:teacher_index' %}">
+                <i class="menu-icon typcn typcn-document-text"></i>
+                <span class="menu-title">Teacher</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<!-- partial -->

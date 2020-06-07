@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'adminside/partial/css.html' %}
+    {% block css %}{% endblock %}
+</head>
+<body>
+<div class="container-scroller">
+    {% include 'adminside/partial/navbar.html' %}
+    <div class="container-fluid page-body-wrapper">
+       {% include 'adminside/partial/sidebar.html' %}
+        <div class="main-panel">
+            <div class="content-wrapper">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <!-- content-wrapper ends -->
+            {% include 'adminside/partial/footer.html' %}
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+{% include 'adminside/partial/script.html' %}
+{% block script %}{% endblock %}
+</body>
+</html>
