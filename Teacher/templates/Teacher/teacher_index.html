@@ -32,11 +32,13 @@
                             <th>Phone</th>
                             <th>Address</th>
                             <th>Salary</th>
-                            <th>Action</th>
+                            {% if request.user|has_group:"Admin" %}
+                                <th>Action</th>
+                            {% endif %}
                         </tr>
                         </thead>
                         <tbody>
-{#                        group = request.user.groups.all()[0].name#}
+                        {#                        group = request.user.groups.all()[0].name#}
                         {% for teacher in teachers %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>

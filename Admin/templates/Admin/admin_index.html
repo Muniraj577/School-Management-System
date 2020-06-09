@@ -47,7 +47,7 @@
                                     {% if request.user|has_group:"Admin" %}
                                         <a class="" href="{% url 'Admin:update_admin_user' admin_user.id %}"><i
                                                 class="fa fa-edit"></i></a>
-                                        {% if request.user.id != user.id %}
+                                        {% if request.user.id != admin_user.user.id %}
                                             <a class="" href="{% url 'Admin:delete_admin_user' admin_user.id %}"><i
                                                     class="fa fa-trash-o" style="color: red;"></i></a>
                                         {% endif %}

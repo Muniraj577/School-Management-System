@@ -7,10 +7,10 @@
             <a href="#" class="nav-link">
                 <div class="profile-image">
                     {% if request.user|has_group:"Admin" %}
-{#                        <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"#}
-{#                             alt="profile image">#}
-{#                        <div class="dot-indicator bg-success"></div>#}
-                         <img class="img-xs rounded-circle" src="{{ request.user.adminuser.image.url }}"
+                        {#                        <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"#}
+                        {#                             alt="profile image">#}
+                        {#                        <div class="dot-indicator bg-success"></div>#}
+                        <img class="img-xs rounded-circle" src="{{ request.user.adminuser.image.url }}"
                              alt="profile image">
                         <div class="dot-indicator bg-success"></div>
                     {% endif %}
@@ -31,12 +31,14 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'Admin:admin_index' %}">
-                <i class="menu-icon typcn typcn-document-text"></i>
-                <span class="menu-title">Manage Admin</span>
-            </a>
-        </li>
+        {% if request.user|has_group:"Admin" %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'Admin:admin_index' %}">
+                    <i class="menu-icon typcn typcn-document-text"></i>
+                    <span class="menu-title">Manage Admin</span>
+                </a>
+            </li>
+        {% endif %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'Teacher:teacher_index' %}">
                 <i class="menu-icon typcn typcn-document-text"></i>

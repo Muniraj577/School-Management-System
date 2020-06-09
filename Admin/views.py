@@ -5,9 +5,11 @@ from django.db.models import Sum
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from schooldashboard.decorators import unauthenticated_user, allowed_users
 
 
 # Create your views here.
+@allowed_users(allowed_roles=["Admin"])
 @login_required(login_url='schooldashboard:login')
 def index(request):
     adminUsers = models.AdminUser.objects.all()
