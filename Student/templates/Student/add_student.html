@@ -1,0 +1,113 @@
+{% extends 'adminside/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Add Student{% endblock %}
+{% block css %}
+    <style>
+        .errorlist {
+            color: red;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Add Student</h4>
+                    <form class="forms-sample" action="{% url 'student:add_student' %}" method="POST"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form1.first_name.id_for_label }}">First Name:</label>
+                            {{ form1.first_name }}
+                            {{ form1.first_name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form1.last_name.id_for_label }}">Last Name:</label>
+                            {{ form1.last_name }}
+                            {{ form1.last_name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form1.username.id_for_label }}">Username:</label>
+                            {{ form1.username }}
+                            {{ form1.username.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form1.email.id_for_label }}">Email:</label>
+                            {{ form1.email }}
+                            {{ form1.email.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form1.password.id_for_label }}">Password:</label>
+                            {{ form1.password }}
+                             {{ form1.password.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form2.classes.id_for_label }}">Select Class:</label>
+                            {{ form2.classes }}
+                            {{ form2.classes.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form2.roll.id_for_label }}">Roll No:</label>
+                            {{ form2.roll }}
+                             {{ form2.roll.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form2.blood_group.id_for_label }}">Select Blood Group:</label>
+                            {{ form2.blood_group }}
+                             {{ form2.blood_group.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form2.phone.id_for_label }}">Phone:</label>
+                            {{ form2.phone }}
+                             {{ form2.phone.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form2.dob.id_for_label }}">Date of birth:</label>
+                            {{ form2.dob }}
+                            {{ form2.dob.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form2.gender.id_for_label }}">Select Gender:</label>
+                            {{ form2.gender }}
+                             {{ form2.gender.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form2.address.id_for_label }}">Address:</label>
+                            {{ form2.address }}
+                             {{ form2.address.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form2.image.id_for_label }}">Upload Image:</label>
+                            {{ form2.image }}
+                            {{ form2.image.errors }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#id_dob").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                yearRange: '-100y:c+nn',
+            });
+        });
+        window.onload = myfunction();
+
+        function myfunction() {
+            $("input").removeAttr("required");
+            $("select").removeAttr("required");
+            $("textarea").removeAttr("required");
+        }
+    </script>
+{% endblock %}

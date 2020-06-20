@@ -33,11 +33,11 @@
                         </div>
                         <div class="form-group">
                             <label for="dob">Date of Birth: </label>
-                            {% render_field form2.dob class="form-control" placeholder="Password" %}
+                            {% render_field form2.dob class="form-control" id="datepicker" placeholder="Date of Birth" %}
                         </div>
                         <div class="form-group">
-                            <label for="dob">Gender: </label>
-                            {% render_field form2.gender class="form-control" placeholder="Password" id="dob" %}
+                            <label for="gender">Gender: </label>
+                            {% render_field form2.gender class="form-control" placeholder="Password" id="gender" %}
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone: </label>
@@ -61,4 +61,25 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                yearRange: '-100y:c+nn',
+            });
+        });
+         window.onload = myfunction();
+
+        function myfunction() {
+            $("input").removeAttr("required");
+            $("select").removeAttr("required");
+            $("textarea").removeAttr("required");
+        }
+    </script>
 {% endblock %}

@@ -64,8 +64,8 @@ def update_admin_user(request, pk):
 
 
 def delete_admin_user(request, pk):
-    teacher = models.AdminUser.objects.get(id=pk)
-    user = teacher.user
+    admin_user = models.AdminUser.objects.get(id=pk)
+    user = admin_user.user
     user.delete()
-    teacher.delete()
+    admin_user.delete()
     return redirect('Admin:admin_index')

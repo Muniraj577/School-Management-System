@@ -1,8 +1,7 @@
 {% extends 'adminside/base.html' %}
 {% load static %}
 {% load auth_extras %}
-{% load widget_tweaks %}
-{% block title %}Teacher Page{% endblock %}
+{% block title %}Student Page{% endblock %}
 {% block css %}
 
 {% endblock %}
@@ -12,8 +11,8 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <h1>
-                        <a href="{% url 'Teacher:add_teacher' %}" class="btn btn-primary float-right mt-2 mr-2">Add
-                            Teacher</a>
+                        <a href="{% url 'student:add_student' %}" class="btn btn-primary float-right mt-2 mr-2">Add
+                            Student</a>
                     </h1>
                 </div>
             </div>
@@ -23,38 +22,41 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Teacher Lists</h4>
-                    <table class="table" id="teacher">
+                    <h4 class="card-title">Student Lists</h4>
+                    <table class="table" id="student">
                         <thead>
                         <tr>
                             <th>S.N</th>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Class</th>
+                            <th>Roll No</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th>Salary</th>
+                            <th>Blood Group</th>
                             {% if request.user|has_group:"Admin" %}
                                 <th>Action</th>
                             {% endif %}
                         </tr>
                         </thead>
                         <tbody>
-                        {#                        group = request.user.groups.all()[0].name#}
-                        {% for teacher in teachers %}
+                        {% for student in students %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
-                                <td><img src="{{ teacher.image.url }}" alt=""></td>
-                                <td>{{ teacher.user.first_name }} {{ teacher.user.last_name }}</td>
-                                <td>{{ teacher.user.email }}</td>
-                                <td>{{ teacher.phone }}</td>
-                                <td>{{ teacher.address }}</td>
-                                <td>{{ teacher.salary }}</td>
+                                <td><img src="{{ student.image.url }}" alt=""></td>
+                                <td>{{ student.user.first_name }} {{ student.user.last_name }}</td>
+                                <td>{{ student.user.email }}</td>
+                                <td>{{ student.classes }}</td>
+                                <td>{{ student.roll }}</td>
+                                <td>{{ student.phone }}</td>
+                                <td>{{ student.address }}</td>
+                                <td>{{ student.blood_group }}</td>
                                 <td>
                                     {% if request.user|has_group:"Admin" %}
-                                        <a class="" href="{% url 'Teacher:update_teacher' teacher.id %}"><i
+                                        <a class="" href="{% url 'student:update_student' student.id %}"><i
                                                 class="fa fa-edit"></i></a>
-                                        <a class="" href="{% url 'Teacher:delete_teacher' teacher.id %}"><i
+                                        <a class="" href="{% url 'student:delete_student' student.id %}"><i
                                                 class="fa fa-trash-o" style="color: red;"></i></a>
                                     {% endif %}
                                 </td>
@@ -72,7 +74,7 @@
         <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
         <script>
             $(document).ready(function () {
-                $('#teacher').DataTable();
+                $('#student').DataTable();
             });
         </script>
     {% endblock %}

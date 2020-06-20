@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'schooldashboard.apps.SchooldashboardConfig',
     'Teacher.apps.TeacherConfig',
     'Admin.apps.AdminConfig',
+    'Student.apps.StudentConfig',
     'widget_tweaks',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
