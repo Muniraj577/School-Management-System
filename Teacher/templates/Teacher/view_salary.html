@@ -14,8 +14,6 @@
                     <h1>
                         <a href="{% url 'Teacher:add_teacher' %}" class="btn btn-primary float-right mt-2 mr-2">Add
                             Teacher</a>
-                        <a href="{% url 'Teacher:view_salary' %}" class="btn btn-primary float-right mt-2 mr-2">View
-                            Teacher Salary</a>
                     </h1>
                 </div>
             </div>
@@ -32,13 +30,7 @@
                             <th>S.N</th>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
                             <th>Salary</th>
-                            {% if request.user|has_group:"Admin" %}
-                                <th>Action</th>
-                            {% endif %}
                         </tr>
                         </thead>
                         <tbody>
@@ -48,18 +40,7 @@
                                 <td>{{ forloop.counter }}</td>
                                 <td><img src="{{ teacher.image.url }}" alt=""></td>
                                 <td>{{ teacher.user.first_name }} {{ teacher.user.last_name }}</td>
-                                <td>{{ teacher.user.email }}</td>
-                                <td>{{ teacher.phone }}</td>
-                                <td>{{ teacher.address }}</td>
                                 <td>{{ teacher.salary }}</td>
-                                <td>
-                                    {% if request.user|has_group:"Admin" %}
-                                        <a class="" href="{% url 'Teacher:update_teacher' teacher.id %}"><i
-                                                class="fa fa-edit"></i></a>
-                                        <a class="" href="{% url 'Teacher:delete_teacher' teacher.id %}"><i
-                                                class="fa fa-trash-o" style="color: red;"></i></a>
-                                    {% endif %}
-                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

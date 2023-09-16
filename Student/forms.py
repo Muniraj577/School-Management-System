@@ -38,8 +38,6 @@ class StudentForm(forms.ModelForm):
         return self.cleaned_data
 
 
-
-
 class StudentExtraForm(forms.ModelForm):
     class Meta:
         model = models.Student
@@ -55,10 +53,12 @@ class StudentUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username', 'email']
+
     def __init__(self, *args, **kwargs):
         super(StudentUpdateForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+
 
 class StudentUpdateExtraForm(forms.ModelForm):
     class Meta:

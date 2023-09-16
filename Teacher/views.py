@@ -7,7 +7,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 
-
 # Create your views here.
 @login_required(login_url='schooldashboard:login')
 def index(request):
@@ -92,3 +91,8 @@ def delete_teacher(request, pk):
     user.delete()
     teacher.delete()
     return redirect('Teacher:teacher_index')
+
+
+def view_teacher_salary(request):
+    teachers = models.Teacher.objects.all();
+    return render(request, 'Teacher/view_salary.html', {'teachers': teachers})

@@ -35,9 +35,14 @@
                             <th>Phone</th>
                             <th>Address</th>
                             <th>Blood Group</th>
-                            {% if request.user|has_group:"Admin" %}
+                            {% if request.user|has_group:"Admin" or "Teacher"%}
                                 <th>Action</th>
                             {% endif %}
+{#                            {% for group in request.user.groups.all %}#}
+{#                                {% if group.name == "Admin" or "Teacher" %}#}
+{#                                    <th>Action</th>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
                         </tr>
                         </thead>
                         <tbody>
@@ -53,7 +58,7 @@
                                 <td>{{ student.address }}</td>
                                 <td>{{ student.blood_group }}</td>
                                 <td>
-                                    {% if request.user|has_group:"Admin" %}
+                                    {% if request.user|has_group:"Admin" or "Teacher" %}
                                         <a class="" href="{% url 'student:update_student' student.id %}"><i
                                                 class="fa fa-edit"></i></a>
                                         <a class="" href="{% url 'student:delete_student' student.id %}"><i

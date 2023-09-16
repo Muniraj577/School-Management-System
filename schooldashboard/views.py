@@ -7,7 +7,7 @@ from .decorators import unauthenticated_user, allowed_users
 # Create your views here.
 
 @login_required(login_url='schooldashboard:login')
-@allowed_users(allowed_roles=['Admin', 'Teacher'])
+@allowed_users(allowed_roles=['Admin', 'Teacher', 'Student'])
 def admin_dashboard(request):
     return render(request, 'schooldashboard/dashboard.html')
 
